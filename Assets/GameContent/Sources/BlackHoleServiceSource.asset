@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0ec0768b4d47d3bd270727ceff8ec7, type: 3}
+  m_Name: BlackHoleServiceSource
+  m_EditorClassIdentifier: 
+  _blackHole: {fileID: 3815007913201998933, guid: d1e0e70d06778ed48a4c172e0eeb3ba3,
+    type: 3}
