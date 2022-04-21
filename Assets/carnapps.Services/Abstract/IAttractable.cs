@@ -3,7 +3,7 @@
     using carnapps.GameViewSystem.Abstract;
     using UnityEngine;
 
-    public interface IAttractable : IView
+    public interface IAttractable : IViewBase
     {
         void Gravitate(Vector2 attractor, float attractionForce);
     }

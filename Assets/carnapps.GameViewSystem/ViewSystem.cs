@@ -3,7 +3,7 @@
     using carnapps.GameViewSystem.Abstract;
     using carnapps.Services.Abstract;
     using UnityEngine;
-    
+
     public class ViewSystem : IService
     {
         private readonly Canvas _canvas;
@@ -14,7 +14,7 @@
         }
 
         public T Create<T, V>(T obj, V viewModel) 
-            where T : View<V> 
+            where T : Object, IView<V> 
             where V : IViewModel
         {
             var view = Object.Instantiate(obj, _canvas.transform, false);

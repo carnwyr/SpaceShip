@@ -3,10 +3,8 @@
     using UnityEngine;
     using System;
 
-    public interface IView<in T> : IViewBase where T: IViewModel
+    public interface IViewBase : IDisposable
     {
         RectTransform RectTransform { get; }
-
-        void Initialize(T viewModel);
     }
 }

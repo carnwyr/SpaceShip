@@ -5,7 +5,7 @@
     using System;
 
     [RequireComponent(typeof(RectTransform))]
-    public abstract class View<T> : MonoBehaviour, IView where T: IViewModel
+    public abstract class View<T> : MonoBehaviour, IView<T> where T: IViewModel
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 

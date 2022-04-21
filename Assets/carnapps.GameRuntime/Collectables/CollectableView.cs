@@ -1,13 +1,16 @@
-﻿namespace carnapps.GameRuntime.Collectables
+namespace carnapps.GameRuntime.Collectables
 {
+    using carnapps.GameViewSystem.Abstract;
     using carnapps.GameRuntime.Collectables.Abstract;
     using UnityEngine;
+    using System;
 
-    public class FuelView : CollectableView<FuelViewModel>
+    [Serializable]
+    public class CollectableView : View<CollectableViewModel>
     {
         [SerializeField] private Rigidbody2D _rigidbody;
 
-        public override void Initialize(FuelViewModel viewModel)
+        public override void Initialize(CollectableViewModel viewModel)
         {
             base.Initialize(viewModel);
             
@@ -16,11 +19,11 @@
 
         public void RandomizePosition()
         {
-            // TODO randomize start position
-            RectTransform.anchoredPosition = new Vector2(0, -400);
+            // TODO randomize position
+            RectTransform.anchoredPosition = new Vector2(0, 400);
         }
 
-        public override void Collect()
+        public void Collect()
         {
             ViewModel.Collect();
             Dispose();
@@ -30,5 +33,6 @@
         {
             base.Dispose();
         }
+
     }
 }
