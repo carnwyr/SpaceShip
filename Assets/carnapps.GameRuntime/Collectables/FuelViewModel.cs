@@ -5,17 +5,12 @@ namespace carnapps.GameRuntime.Collectables
 
     public class FuelViewModel : CollectableViewModel
     {
-        private readonly float _fuelAmount;
+        private readonly float _fuelAmount = 100;
         private readonly PlayerService _playerService;
 
-        public FuelViewModel()
+        public FuelViewModel(PlayerService playerService)
         {
-            
-        }
-
-        public FuelViewModel(float fuelAmount, PlayerService playerService)
-        {
-            _fuelAmount = fuelAmount;
+            //_fuelAmount = fuelAmount;
             _playerService = playerService;
         }
 

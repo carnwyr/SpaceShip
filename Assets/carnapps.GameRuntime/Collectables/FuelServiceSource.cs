@@ -5,7 +5,7 @@ namespace carnapps.GameRuntime.Collectables
     using carnapps.Services;
     using carnapps.Services.Abstract;
     using UnityEngine;
-    using System.Collections.Generic;
+    using carnapps.GameRuntime.Player;
 
     [CreateAssetMenu(menuName = "carnapps/"+nameof(FuelServiceSource), fileName = nameof(FuelServiceSource))]
     public class FuelServiceSource : ServiceSource
@@ -19,8 +19,9 @@ namespace carnapps.GameRuntime.Collectables
         public override IService CreateService(IContext context)
         {
             var viewSystem = context.Get<ViewSystem>();
+            var playerService = context.Get<PlayerService>();
 
-            var service = new FuelService(viewSystem, _maxCurrentCount, _collectableObject);
+            var service = new FuelService(viewSystem, playerService, _maxCurrentCount, _collectableObject);
 
             context.Publish(service);
             return service;

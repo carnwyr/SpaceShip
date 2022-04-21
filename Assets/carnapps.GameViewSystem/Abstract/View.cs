@@ -22,6 +22,7 @@
         public virtual void Dispose() 
         {
             _disposables.Dispose();
+            Destroy(gameObject);
         }
 
         protected View<T> Bind<V>(IObservable<V> observable, Action<V> action)

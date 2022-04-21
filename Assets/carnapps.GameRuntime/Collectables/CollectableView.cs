@@ -6,15 +6,23 @@ namespace carnapps.GameRuntime.Collectables
     using System;
 
     [Serializable]
+    [RequireComponent(typeof(Collider2D))]
     public class CollectableView : View<CollectableViewModel>
     {
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private string _playerTag;
 
         public override void Initialize(CollectableViewModel viewModel)
         {
             base.Initialize(viewModel);
             
             RandomizePosition();
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.tag.Equals(_playerTag, StringComparison.OrdinalIgnoreCase)) {
+                Collect();
+            }
         }
 
         public void RandomizePosition()

@@ -5,8 +5,6 @@
 
     public interface IView<in T> : IViewBase where T: IViewModel
     {
-        RectTransform RectTransform { get; }
-
         void Initialize(T viewModel);
     }
 }
