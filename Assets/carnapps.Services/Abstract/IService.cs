@@ -1,8 +1,8 @@
 ﻿namespace carnapps.Services.Abstract
 {
-    using System;
+    using carnapps.Context.Abstract;
     
-    public interface IService : IDisposable
+    public interface IService : ILifetime
     {
         
     }

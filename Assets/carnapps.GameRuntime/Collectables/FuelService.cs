@@ -4,11 +4,11 @@ namespace carnapps.GameRuntime.Collectables
     using UniRx;
     using carnapps.GameViewSystem;
     using carnapps.GameRuntime.Player;
+    using carnapps.Context;
 
     // TODO pooling
-    public class FuelService : IService
+    public class FuelService : Service
     {
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private readonly ViewSystem _viewSystem;
         private readonly PlayerService _playerService;
 
@@ -26,7 +26,7 @@ namespace carnapps.GameRuntime.Collectables
                         Spawn(fuelPrefab);
                     }
                 })
-                .AddTo(_disposables);
+                .AddTo(this);
         }
 
         private void Spawn(CollectableView fuelPrefab)
@@ -36,11 +36,6 @@ namespace carnapps.GameRuntime.Collectables
             _currentCount++;
 
             //view.de => count--
-        }
-
-        public void Dispose() 
-        {
-            _disposables.Dispose();
         }
     }
 }

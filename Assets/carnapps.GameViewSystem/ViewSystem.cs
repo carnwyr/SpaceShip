@@ -4,7 +4,7 @@
     using carnapps.Services.Abstract;
     using UnityEngine;
 
-    public class ViewSystem : IService
+    public class ViewSystem : Service
     {
         private readonly Canvas _canvas;
         
@@ -20,11 +20,6 @@
             var view = Object.Instantiate(obj, _canvas.transform, false);
             view.Initialize(viewModel);
             return view;
-        }
-
-        public void Dispose()
-        {
-            
         }
     }
 }

@@ -1,16 +1,14 @@
 ﻿namespace carnapps.GameRuntime.BlackHole
 {
-    using System;
-    using System.Collections.Generic;
     using carnapps.GameViewSystem;
     using carnapps.Services.Abstract;
     using UniRx;
     using UnityEngine;
+    using carnapps.Context;
 
-    public class BlackHoleService : IAttractorService
+    public class BlackHoleService : Service, IAttractorService
     {
         private readonly BlackHoleView  _blackHole;
-        private readonly IList<IDisposable> _attractedObjects = new List<IDisposable>();
         private float _maxDistance;
 
         public BlackHoleService(ViewSystem viewSystem, BlackHoleView blackHole)
@@ -30,15 +28,7 @@
                 var attractionForce = Mathf.Pow(Mathf.Clamp01(gravityDirection.magnitude / _maxDistance) - 1, 2);
                 target.Gravitate(gravityDirection.normalized, attractionForce);
             });
-            _attractedObjects.Add(attractedObject);
-        }
-
-        public void Dispose()
-        {
-            foreach (var target in _attractedObjects)
-            {
-                target.Dispose();
-            }
+            attractedObject.AddTo(this);
         }
     }
 }

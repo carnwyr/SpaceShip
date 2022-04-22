@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eb3664aa490c14483a1d150e025c93, type: 3}
   m_Name: FuelServiceSource
   m_EditorClassIdentifier: 
-  _maxCurrentCount: 0
-  _collectableObject: {fileID: 0}
+  _maxCurrentCount: 1
+  _collectableObject: {fileID: -8090652264432292530, guid: 17c64e36d9fdd984c93808300faecd1c,
+    type: 3}

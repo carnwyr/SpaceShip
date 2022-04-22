@@ -3,14 +3,12 @@
     using carnapps.GameViewSystem;
     using carnapps.Services.Abstract;
     using UniRx;
-    using System;
     using UnityEngine;
+    using carnapps.Context;
 
-    public class PlayerService : IService
+    public class PlayerService : Service
     {
         private readonly PlayerViewModel _playerViewModel;
-
-        private IDisposable _fuelSubscription;
 
         public IReactiveProperty<float> Fuel { get; } = new ReactiveProperty<float>();
 
@@ -21,14 +19,11 @@
             
             attractorService.Attract(playerView);
 
-            _fuelSubscription = _playerViewModel.Fuel
-                .Subscribe(x => Fuel.Value = Mathf.Clamp01(x / _playerViewModel.MaxFuel));
+            _playerViewModel.Fuel
+                .Subscribe(x => Fuel.Value = Mathf.Clamp01(x / _playerViewModel.MaxFuel))
+                .AddTo(this);
         }
 
         public void AddFuel(float fuelAmount) => _playerViewModel.AddFuel(fuelAmount);
-
-        public void Dispose() {
-            _fuelSubscription?.Dispose();
-        }
     }
 }
