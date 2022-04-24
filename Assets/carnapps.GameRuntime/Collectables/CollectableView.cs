@@ -25,10 +25,12 @@ namespace carnapps.GameRuntime.Collectables
             }
         }
 
+        // TODO revamp
         public void RandomizePosition()
         {
-            // TODO randomize position
-            RectTransform.anchoredPosition = new Vector2(0, 400);
+            var posX = UnityEngine.Random.Range(0 - Screen.width / 2f, Screen.width / 2f);
+            var posY = UnityEngine.Random.Range(0 - Screen.height / 2f, Screen.height / 2f);
+            RectTransform.anchoredPosition = new Vector2(posX, posY);
         }
 
         public void Collect()

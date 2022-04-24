@@ -1,13 +1,15 @@
-namespace carnapps.Context.Abstract
+namespace carnapps.Context
 {
     using UniRx;
     using carnapps.Context.Abstract;
 
-    public abstract class Lifetime : ILifetime
+    public class Lifetime : ILifetime
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
         public CompositeDisposable LifetimeContext => _disposables;
+
+        public ReactiveCommand<Unit> OnDisposed { get; } = new ReactiveCommand<Unit>();
 
         public ILifetime AddTo(ILifetime lifetime)
         {
@@ -17,6 +19,8 @@ namespace carnapps.Context.Abstract
         public virtual void Dispose()
         {
             _disposables.Dispose();
+            OnDisposed.Execute(Unit.Default);
+            OnDisposed.Dispose();
         }
     }
 }

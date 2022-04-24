@@ -1,8 +1,8 @@
 ﻿namespace carnapps.GameViewSystem.Abstract
 {
-    using System;
+    using carnapps.Context.Abstract;
 
-    public interface IViewModel : IDisposable
+    public interface IViewModel : ILifetime
     {
         
     }

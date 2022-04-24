@@ -2,21 +2,15 @@ namespace carnapps.GameViewSystem.Abstract
 {
     using System;
     using UniRx;
+    using carnapps.Context;
 
-    public abstract class ViewModel : IViewModel
+    public abstract class ViewModel : Lifetime, IViewModel
     {
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
-
-        public virtual void Dispose() 
-        {
-            _disposables.Dispose();
-        }
-
         protected ViewModel Bind<V>(IObservable<V> observable, Action<V> action)
         {
             observable
                 .Subscribe(x => action(x))
-                .AddTo(_disposables);
+                .AddTo(this);
             return this;
         }
     }

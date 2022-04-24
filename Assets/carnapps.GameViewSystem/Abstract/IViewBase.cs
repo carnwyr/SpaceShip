@@ -1,9 +1,9 @@
 ﻿namespace carnapps.GameViewSystem.Abstract
 {
     using UnityEngine;
-    using System;
+    using carnapps.Context.Abstract;
 
-    public interface IViewBase : IDisposable
+    public interface IViewBase : ILifetime
     {
         RectTransform RectTransform { get; }
     }

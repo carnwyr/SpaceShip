@@ -35,7 +35,7 @@ namespace carnapps.GameRuntime.Collectables
             var view = _viewSystem.Create(fuelPrefab, viewModel);
             _currentCount++;
 
-            //view.de => count--
+            view.OnDisposed.Subscribe(_ => _currentCount--).AddTo(this);
         }
     }
 }
