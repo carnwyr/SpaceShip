@@ -1,9 +1,9 @@
+using carnapps.GameRuntime.Player;
+using carnapps.GameViewSystem;
+using carnapps.Services.Abstract;
+
 namespace carnapps.GameRuntime.GUI
 {
-    using carnapps.GameViewSystem;
-    using carnapps.Services.Abstract;
-    using carnapps.GameRuntime.Player;
-
     public class GUIService : Service
     {
         public GUIService(ViewSystem viewSystem, GUIView gui, PlayerService playerService)

@@ -1,20 +1,20 @@
-﻿namespace carnapps.GameRuntime.BlackHole
-{
-    using carnapps.GameViewSystem;
-    using carnapps.Services.Abstract;
-    using UniRx;
-    using UnityEngine;
-    using carnapps.Context;
+﻿using carnapps.Context;
+using carnapps.GameViewSystem;
+using carnapps.Services.Abstract;
+using UniRx;
+using UnityEngine;
 
+namespace carnapps.GameRuntime.BlackHole
+{
     public class BlackHoleService : Service, IAttractorService
     {
-        private readonly BlackHoleView  _blackHole;
+        private readonly BlackHoleView _blackHole;
         private float _maxDistance;
 
-        public BlackHoleService(ViewSystem viewSystem, BlackHoleView blackHole)
+        public BlackHoleService(ViewSystem viewSystem, BlackHoleView blackHolePrefab)
         {
-            var viewModel = new BlackHoleViewModel();            
-            _blackHole = viewSystem.Create(blackHole, viewModel);
+            var viewModel = new BlackHoleViewModel();
+            _blackHole = viewSystem.Create(blackHolePrefab, viewModel);
 
             var farthestPoint = new Vector2(Screen.width / 2, Screen.height / 2);
             _maxDistance = farthestPoint.magnitude;

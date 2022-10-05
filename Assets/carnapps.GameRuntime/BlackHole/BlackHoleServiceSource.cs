@@ -1,11 +1,11 @@
-﻿namespace carnapps.GameRuntime.BlackHole
-{
-    using carnapps.Context.Abstract;
-    using carnapps.GameViewSystem;
-    using carnapps.Services;
-    using carnapps.Services.Abstract;
-    using UnityEngine;
+﻿using carnapps.Context.Abstract;
+using carnapps.GameViewSystem;
+using carnapps.Services;
+using carnapps.Services.Abstract;
+using UnityEngine;
 
+namespace carnapps.GameRuntime.BlackHole
+{
     [CreateAssetMenu(menuName = "carnapps/"+nameof(BlackHoleServiceSource), fileName = nameof(BlackHoleServiceSource))]
     public class BlackHoleServiceSource : ServiceSource
     {

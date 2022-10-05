@@ -1,12 +1,14 @@
-﻿namespace carnapps.Context
-{
-    using System;
-    using System.Collections.Generic;
-    using carnapps.Context.Abstract;
+﻿using System;
+using System.Collections.Generic;
+using carnapps.Context.Abstract;
+using Cysharp.Threading.Tasks;
+using UniRx;
 
-    class Context : Lifetime, IContext
+namespace carnapps.Context
+{
+    public class Context : Lifetime, IContext
     {
-        private readonly IDictionary<Type, object> _context = new Dictionary<Type, object>();
+        private readonly IReactiveDictionary<Type, object> _context = new ReactiveDictionary<Type, object>();
 
         public void Publish<T>(T obj) where T : class
         {
@@ -19,8 +21,22 @@
 
         public T Get<T>() where T : class
         {
-            _context.TryGetValue(typeof(T), out var obj);
+            ((IDictionary<Type, object>) _context).TryGetValue(typeof(T), out var obj);
             return obj as T;
+        }
+
+        public async UniTask<T> GetFirstAsync<T>(ILifetime lifetime) where T : class
+        {
+            if (((IDictionary<Type, object>) _context).TryGetValue(typeof(T), out var obj))
+            {
+                return obj as T;
+            }
+
+            return await _context.ObserveAdd()
+                .Where(x => x.Value is T)
+                .First()
+                .Select(x => x as T)
+                .ToUniTask(cancellationToken: lifetime.AsCancellationToken());
         }
     }
 }

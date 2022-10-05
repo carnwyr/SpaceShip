@@ -1,16 +1,18 @@
+using carnapps.Context.Abstract;
+using carnapps.GameViewSystem.Abstract;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UI;
+
 namespace carnapps.GameRuntime.GUI
 {
-    using carnapps.GameViewSystem.Abstract;
-    using UnityEngine.UI;
-    using UnityEngine;
-
     public class GUIView : View<GUIViewModel>
     {
         [SerializeField] private Slider _fuelSlider;
 
-        public override void Initialize(GUIViewModel viewModel)
+        public override async UniTask Initialize(GUIViewModel viewModel)
         {
-            base.Initialize(viewModel);
+            await base.Initialize(viewModel);
 
             Bind(viewModel.FuelAmount, x => _fuelSlider.value = x);
         }

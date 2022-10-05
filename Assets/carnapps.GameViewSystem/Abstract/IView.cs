@@ -1,7 +1,9 @@
-﻿namespace carnapps.GameViewSystem.Abstract
+﻿using Cysharp.Threading.Tasks;
+
+namespace carnapps.GameViewSystem.Abstract
 {
-    public interface IView<in T> : IViewBase where T: IViewModel
+    public interface IView<in T> : IViewBase where T : IViewModel
     {
-        void Initialize(T viewModel);
+        UniTask Initialize(T viewModel);
     }
 }

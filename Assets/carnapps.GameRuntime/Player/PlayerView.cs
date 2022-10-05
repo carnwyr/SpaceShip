@@ -1,11 +1,13 @@
-﻿namespace carnapps.GameRuntime.Player
-{
-    using carnapps.GameViewSystem.Abstract;
-    using carnapps.Services.Abstract;
-    using UnityEngine;
-    using System;
-    using UniRx;
+﻿using System;
+using carnapps.Context.Abstract;
+using carnapps.GameViewSystem.Abstract;
+using carnapps.Services.Abstract;
+using Cysharp.Threading.Tasks;
+using UniRx;
+using UnityEngine;
 
+namespace carnapps.GameRuntime.Player
+{
     public class PlayerView : View<PlayerViewModel>, IAttractable
     {
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -14,10 +16,10 @@
 
         private float _attractionForce;
 
-        public override void Initialize(PlayerViewModel viewModel)
+        public override async UniTask Initialize(PlayerViewModel viewModel)
         {
-            base.Initialize(viewModel);
-            
+            await base.Initialize(viewModel);
+
             ResetPosition();
 
             _inputSubscription = Observable.EveryFixedUpdate().Subscribe(_ => ProcessInput());
@@ -37,7 +39,7 @@
 
         public void Gravitate(Vector2 attractor, float attractionForce)
         {
-            var distance = (attractor - (Vector2)RectTransform.anchoredPosition).magnitude;
+            var distance = (attractor - (Vector2) RectTransform.anchoredPosition).magnitude;
             MoveTowards(attractor, attractionForce);
             _attractionForce = attractionForce;
         }
@@ -52,7 +54,7 @@
             MoveTowards(pos);
         }
 
-        
+
         public override void Dispose()
         {
             base.Dispose();

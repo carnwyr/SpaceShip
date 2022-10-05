@@ -1,9 +1,9 @@
+using System;
+using carnapps.Context;
+using UniRx;
+
 namespace carnapps.GameViewSystem.Abstract
 {
-    using System;
-    using UniRx;
-    using carnapps.Context;
-
     public abstract class ViewModel : Lifetime, IViewModel
     {
         protected ViewModel Bind<V>(IObservable<V> observable, Action<V> action)

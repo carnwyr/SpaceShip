@@ -1,10 +1,10 @@
-﻿namespace carnapps.GameViewSystem
+﻿using carnapps.Context.Abstract;
+using carnapps.Services;
+using carnapps.Services.Abstract;
+using UnityEngine;
+
+namespace carnapps.GameViewSystem
 {
-    using carnapps.Context.Abstract;
-    using carnapps.Services;
-    using carnapps.Services.Abstract;
-    using UnityEngine;
-    
     [CreateAssetMenu(menuName = "carnapps/"+nameof(ViewSystemSource), fileName = nameof(ViewSystemSource))]
     public class ViewSystemSource : ServiceSource
     {

@@ -1,35 +1,41 @@
+using System;
+using carnapps.GameRuntime.Collectables.Abstract;
+using carnapps.GameViewSystem.Abstract;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
 namespace carnapps.GameRuntime.Collectables
 {
-    using carnapps.GameViewSystem.Abstract;
-    using carnapps.GameRuntime.Collectables.Abstract;
-    using UnityEngine;
-    using System;
-
     [Serializable]
     [RequireComponent(typeof(Collider2D))]
     public class CollectableView : View<CollectableViewModel>
     {
         [SerializeField] private string _playerTag;
+        [SerializeField] private float _noSpawnBorder = 100;
 
-        public override void Initialize(CollectableViewModel viewModel)
+        public override async UniTask Initialize(CollectableViewModel viewModel)
         {
-            base.Initialize(viewModel);
-            
+            await base.Initialize(viewModel);
+
+            RectTransform.anchoredPosition = viewModel.PositioningService.GetRandomPosition();
+
             RandomizePosition();
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.tag.Equals(_playerTag, StringComparison.OrdinalIgnoreCase)) {
+            if (other.tag.Equals(_playerTag, StringComparison.OrdinalIgnoreCase))
+            {
                 Collect();
             }
         }
 
-        // TODO revamp
+        // TODO revamp, add positioning service
         public void RandomizePosition()
         {
-            var posX = UnityEngine.Random.Range(0 - Screen.width / 2f, Screen.width / 2f);
-            var posY = UnityEngine.Random.Range(0 - Screen.height / 2f, Screen.height / 2f);
+            var posX = UnityEngine.Random.Range(_noSpawnBorder - Screen.width / 2f, Screen.width / 2f - _noSpawnBorder);
+            var posY = UnityEngine.Random.Range(_noSpawnBorder - Screen.height / 2f,
+                Screen.height / 2f - _noSpawnBorder);
             RectTransform.anchoredPosition = new Vector2(posX, posY);
         }
 
@@ -38,11 +44,10 @@ namespace carnapps.GameRuntime.Collectables
             ViewModel.Collect();
             Dispose();
         }
-        
+
         public override void Dispose()
         {
             base.Dispose();
         }
-
     }
 }

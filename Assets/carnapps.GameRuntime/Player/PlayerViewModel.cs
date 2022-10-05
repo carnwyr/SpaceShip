@@ -1,9 +1,9 @@
-﻿namespace carnapps.GameRuntime.Player
-{
-    using carnapps.GameViewSystem.Abstract;
-    using UniRx;
-    using UnityEngine;
+﻿using carnapps.GameViewSystem.Abstract;
+using UniRx;
+using UnityEngine;
 
+namespace carnapps.GameRuntime.Player
+{
     public class PlayerViewModel : ViewModel
     {
         private readonly float _fuelSpendingRate;
@@ -20,14 +20,14 @@
             _fuelSpendingRate = fuelSpendingRate;
         }
 
-        public bool TrySpendFuel(float spendingModifier) {
-            if (_fuel.Value > 0) 
-            {
-                var spendingRate = (1 - _fuelSpendingRate) * spendingModifier + _fuelSpendingRate;
-                _fuel.Value -= spendingRate;
-                return true;
-            }
-            return false;
+        public bool TrySpendFuel(float spendingModifier)
+        {
+            if (_fuel.Value <= 0) return false;
+            
+            var spendingRate = (1 - _fuelSpendingRate) * spendingModifier + _fuelSpendingRate;
+            _fuel.Value -= spendingRate;
+            return true;
+
         }
 
         public void AddFuel(float fuelAmount)
