@@ -8,9 +8,11 @@ namespace carnapps.Services
         fileName = nameof(PositioningServiceSource))]
     public class PositioningServiceSource : ServiceSource
     {
+        [SerializeField] private float _noSpawnBorder = 100;
+        
         public override IService CreateService(IContext context)
         {
-            var positioningService = new PositioningService();
+            var positioningService = new PositioningService(_noSpawnBorder);
             context.Publish(positioningService);
             return positioningService;
         }

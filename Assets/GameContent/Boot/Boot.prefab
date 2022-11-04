@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serviceSources:
   - {fileID: 11400000, guid: bb3de56d83073ed43abc2cf2ce21c485, type: 2}
+  - {fileID: 11400000, guid: d46e214d6c000b849b77e16f9e8d607d, type: 2}
   - {fileID: 11400000, guid: fbbc920e10d35754e89d89a1883a165b, type: 2}
   - {fileID: 11400000, guid: 3090a805d7af3a748b9cb7f1675c864f, type: 2}
   - {fileID: 11400000, guid: a1134c90d78c6204c81949cd30c547bb, type: 2}
